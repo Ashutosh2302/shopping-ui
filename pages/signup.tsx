@@ -1,5 +1,4 @@
-
-import { Signup } from "@/components/Signup/Signup"
+import { Signup } from "@/components/Authentication/Signup/Signup"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 

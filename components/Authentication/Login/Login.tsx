@@ -3,9 +3,9 @@ import { ChangeEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { LoginPayload } from "@/types/user";
 import api from "@/utils/axios";
-import { Signup } from "../Signup/Signup";
-import Link from "next/link";
-
+import InputBox from "@/component-library/InputBox/InputBox";
+import Button from "@/component-library/Button/Button";
+import ActionLink from "@/component-library/Link/Link";
 
 export const Login: React.FC = () => {
     const router = useRouter()
@@ -49,16 +49,14 @@ export const Login: React.FC = () => {
     const renderForm = () => {
         return <>
             <h2>Login</h2>
-            <label>Username*</label>
-            <div><input type="text" onChange={handleUsernameChange} /></div>
-            <label>Password*</label>
-            <div><input type="password" onChange={handlePasswordChange} /></div>
+            <InputBox lable="Username" onValueChange={handleUsernameChange} mandatory />
+            <InputBox lable="Password" onValueChange={handlePasswordChange} mandatory textType="password" />
             <br />
-            <button onClick={login}>Login</button>
+            <Button text="Login" onClick={login} />
         </>
     }
 
-    return <> {renderForm()} <Link href="/signup">Signup</Link></>
+    return <> {renderForm()} <ActionLink href="/singup" text="Signup" /></>
 }
 
 

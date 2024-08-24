@@ -7,7 +7,7 @@ export interface IShoppingList {
 
 export interface IShoppingListWithItems {
     totalCount: number
-    totalPicker: number
+    totalPicked: number
     items: IShoppingListItem[]
 }
 

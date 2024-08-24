@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import toast from "react-hot-toast";
 import api from "@/utils/axios";
+import InputBox from "@/component-library/InputBox/InputBox";
+import Button from "@/component-library/Button/Button";
 
 interface Props {
     listId: string
@@ -49,17 +51,12 @@ export const CreateListItem: React.FC<Props> = ({ listId }) => {
     const renderForm = () => {
         return <>
             <h2>Create new shopping list item</h2>
-            <label>Name*</label>
-            <div><input type="text" onChange={handleNameChange} /></div>
+            <InputBox lable="Name" onValueChange={handleNameChange} mandatory />
+            <InputBox lable="Price (in pounds)" onValueChange={handlePriceChange} mandatory />
             <br />
-            <label>Price* (in pounds)</label>
-            <div><input type="number" onChange={handlePriceChange} /></div>
-            <br />
-            <button onClick={handleCreate}>Create item</button>
+            <Button text="Create Item" onClick={handleCreate} />
         </>
     }
 
     return <> {renderForm()} </>
 }
-
-

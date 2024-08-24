@@ -1,4 +1,4 @@
-import { Login } from "@/components/Login/Login"
+import { Login } from "@/components/Authentication/Login/Login"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 

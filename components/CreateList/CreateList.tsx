@@ -1,3 +1,5 @@
+import Button from "@/component-library/Button/Button";
+import InputBox from "@/component-library/InputBox/InputBox";
 import { CreateShoppingListPayload } from "@/types/shopping";
 import api from "@/utils/axios";
 import { useRouter } from "next/router";
@@ -41,10 +43,9 @@ export const CreateList: React.FC = () => {
     const renderForm = () => {
         return <>
             <h2>Create new shopping list</h2>
-            <label>Name*</label>
-            <div><input type="text" onChange={handleNameChange} /></div>
+            <InputBox lable="Name" onValueChange={handleNameChange} mandatory />
             <br />
-            <button onClick={handleCreate}>Create List</button>
+            <Button text="Create List" onClick={handleCreate} />
         </>
 
     }

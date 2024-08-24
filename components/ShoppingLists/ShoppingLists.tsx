@@ -1,38 +1,17 @@
-import { IShoppingList } from "@/types/shopping";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import api from "@/utils/axios";
-import Link from "next/link";
-
+import { useShoppingLists } from "./useShopping";
+import ActionLink from "@/component-library/Link/Link";
 
 export const ShoppingLists = () => {
     const router = useRouter();
-    const [lists, setLists] = useState<{ totalCount: number, data: IShoppingList[] }>()
-    const [error, setError] = useState(false)
+    const { lists, error } = useShoppingLists()
 
-    const data = async () => {
-        try {
-            await api
-                .get("/shopping")
-                .then((response) => {
-                    setLists(response.data);
-                });
-        } catch (e) {
-            setError(true)
-            console.log(e);
-        }
-    };
-
-    useEffect(() => {
-        data();
-    }, []);
-
-    const createListLink = (text: string) => <Link href="/createList"> {text}</Link>
+    const createListLink = (text: string) => <ActionLink href="/createList" text={text} />
 
     const renderData = () => {
         if (error) return <>Failed to fetch shopping lists</>
-        else if (!lists) return <>Loading...</>
-        else if (lists.data) {
+        else if (!error && !lists) return <>Loading...</>
+        else if (lists && lists.data && lists.data.length) {
             return <>
                 {createListLink("Create new list")}
                 <div>
@@ -45,8 +24,8 @@ export const ShoppingLists = () => {
 
             </>
         }
-        else return <div>
-            <p>You don't have any lists 🥺 </p>
+        else if (lists && lists.totalCount == 0) return <div>
+            <p>You don't have any lists 🥺</p>
             <p>Get cracking with your first shopping list {createListLink("Here")}!!!</p>
         </div>
     }
@@ -60,5 +39,3 @@ export const ShoppingLists = () => {
 
         {renderData()} </>
 }
-
-

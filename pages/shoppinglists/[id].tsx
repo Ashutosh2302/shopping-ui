@@ -1,5 +1,6 @@
-import { ShoppingList } from "@/components/ShoppingLists/ShoppingList";
 
+
+import { ShoppingList } from "@/components/ShoppingLists/SingleShoppingList/ShoppingList";
 import { useRouter } from "next/router";
 
 const ShoppingListPage = () => {

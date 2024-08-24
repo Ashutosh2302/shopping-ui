@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import toast from "react-hot-toast";
-import { LoginPayload, SignupPayload } from "@/types/user";
+import { SignupPayload } from "@/types/user";
 import api from "@/utils/axios";
-
+import InputBox from "@/component-library/InputBox/InputBox";
+import Button from "@/component-library/Button/Button";
 
 export const Signup: React.FC = () => {
     const router = useRouter()
+
     const [{ email, username, password }, setLoginDetails] =
         useState<SignupPayload>({
             email: "",
@@ -54,16 +56,12 @@ export const Signup: React.FC = () => {
 
     const renderForm = () => {
         return <>
-            <h2>Login</h2>
-            <label>Email*</label>
-            <div><input type="text" onChange={handleEmailChange} /></div>
-            <label>Username*</label>
-            <div><input type="text" onChange={handleUsernameChange} /></div>
-            <label>Password*</label>
-            <div><input type="password" onChange={handlePasswordChange} /></div>
-
+            <h2>Signup</h2>
+            <InputBox lable="Email" onValueChange={handleEmailChange} mandatory />
+            <InputBox lable="Username" onValueChange={handleUsernameChange} mandatory />
+            <InputBox lable="Password" onValueChange={handlePasswordChange} mandatory textType="password" />
             <br />
-            <button onClick={handleSignup}>Signup</button>
+            <Button text="Signup" onClick={handleSignup} />
         </>
     }
 
