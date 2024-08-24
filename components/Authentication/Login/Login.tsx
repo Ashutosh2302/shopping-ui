@@ -56,7 +56,7 @@ export const Login: React.FC = () => {
         </>
     }
 
-    return <> {renderForm()} <ActionLink href="/singup" text="Signup" /></>
+    return <> {renderForm()} <ActionLink href="/signup" text="Signup" /></>
 }
 
 
